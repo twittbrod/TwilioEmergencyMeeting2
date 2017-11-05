@@ -19,8 +19,10 @@ client.messages.create({
     },
     function (error, message) {
         if (error) {
+            // print error to console
             console.log(error);
         } else {
+            // print message sid to console
             console.log(message.sid);
         }
     }

@@ -29,10 +29,7 @@ var client = new twilio();
 //const client = require('twilio')();
 
 
-
 var userFile = "SWATTeamList.txt" // list of phone numbers to contact
-
-
 
 
 const app = express();
@@ -42,7 +39,9 @@ app.use(bodyParser());
 app.post('/sms', (req, res) => {
     const twiml = new MessagingResponse();
 
+// (GO | Go | go) are keywords to instantiate conference
 if ((req.body.Body == 'GO') || (req.body.Body == 'go') || (req.body.Body == 'Go')) {
+    // notify sender of receipt of message to instantiate conference
     twiml.message('Launching SWAT meeting immediately!');
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
@@ -112,6 +111,8 @@ if ((req.body.Body == 'GO') || (req.body.Body == 'go') || (req.body.Body == 'Go'
 
 });
 
+
+// set listen port for webhook
 http.createServer(app).listen(3000, () => {
     console.log('Express server listening on port 3000');
 });
